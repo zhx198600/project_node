@@ -1,0 +1,153 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title></title>
+	<script src="http://code.jquery.com/jquery-1.4.1.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		console.log("哈哈哈"+"hello");
+	    var str='';
+		function addList(){
+			$.post("db.json",function(data){
+				//data.user.push({"name":"meimei","password":"888888"});
+				//alert(data.user[3].name);
+				$("#infolist").html('');
+				$(data).each(function(){
+	              for(i=0;i<data.user.length;i++){
+					if(data.user[i].name!=undefined){
+						str+='<tr>'+
+						'<td><input type="checkbox" name='+'check'+this.user[i].id+'></td>'+
+						'<td>'+this.user[i].id+'</td>'+
+						'<td>'+this.user[i].name+'</td>'+
+						'<td>'+this.user[i].password+'</td>'+
+						'</tr>'
+					}
+				  
+	              }
+	           });
+	           $('.infolist').append(str); 
+		})         
+			return str;
+		}
+		addList();
+		
+		// $("#addData").click(function(){
+		// 		var addName=$("#add-name").attr("value");
+		// 		var addPass=$("#add-pass").attr("value");
+		// 	}) ;
+
+		
+	});
+	//add();
+	</script>
+	<style type="text/css" media="screen">
+	    body{
+			font-family: "微软雅黑";
+		}
+		table{
+			border-collapse: collapse;
+			border-spacing: 0;
+			width:100%;
+			margin-bottom: 10px;
+		}
+		table th{
+			background: #1b68b9;
+			color: #fff;
+		}
+		table th,table td{
+			border:#ccc solid 1px;
+			padding: 0px 10px;
+			height:30px;
+			line-height: 30px;
+		}
+		.button{
+			background:#195aad;
+			padding:0px 10px;
+			height:25px;
+			border:#0e4184 solid 1px;
+			border-radius: 3px;
+			color:#fff;
+			font-family: "微软雅黑";
+			cursor:pointer;
+		}
+		.button:hover{
+			background:#517454;
+			border:#517450 solid 1px;
+
+		}
+		.hide{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+<h1>用户登录</h1>
+<form action="http://127.0.0.1:8080/process_get" method="GET">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User:<input type="text" name="log_name"><br/>
+	password:<input style="margin-top:10px;" type="password" name="log_pass">
+	<input class="button" type="submit" value="提交">
+</form>
+<h1 style="border-top:#ccc solid 1px;padding-top:40px;">用户注册</h1>
+<form action="http://127.0.0.1:8080/process_post" method="POST">
+	&nbsp;&nbsp;&nbsp;&nbsp;用户名:<input type="text" name="reg_name"><br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密 码:<input style="margin-top:10px;" type="password" name="reg_pass"><br/>
+	重复密码:<input style="margin-top:10px;" type="password" name="reg_pass_sec">
+	<input class="button" type="submit" value="提交">
+</form>
+
+<form action="http://127.0.0.1:8080/table_get" method="GET">
+<h1 style="border-top:#ccc solid 1px;padding-top:40px;">数据列表</h1>
+	<table name="user-table">
+		<caption>用户数据表</caption>
+		<thead>
+			<tr>
+				<th></th>
+				<th>id</th>
+				<th>用户名</th>
+				<th>密码</th>
+			</tr>
+		</thead>
+		<tbody  class="infolist">
+		</tbody>
+	</table>
+	用户名:<input type="text" name="add_name">
+	&nbsp;&nbsp;密 码:<input type="text" name="add_pass"><br/><br/>
+	<input class="button" type="submit" id="addData" value="添加">
+</form>
+<form action="http://127.0.0.1:8080/table_del" method="GET">
+	<table name="user-table">
+		<caption>用户数据表</caption>
+		<thead>
+			<tr>
+				<th></th>
+				<th>id</th>
+				<th>用户名</th>
+				<th>密码</th>
+			</tr>
+		</thead>
+		<tbody  class="infolist">
+		</tbody>
+	</table>
+	<input class="button" type="submit" id="delData" value="删除">
+</form>
+<form action="http://127.0.0.1:8080/table_mod" method="GET">
+	<table name="user-table">
+		<caption>用户数据表</caption>
+		<thead>
+			<tr>
+				<th></th>
+				<th>id</th>
+				<th>用户名</th>
+				<th>密码</th>
+			</tr>
+		</thead>
+		<tbody  class="infolist">
+		</tbody>
+	</table>
+	用户名:<input type="text" name="mod_name" id="mod-name1">
+	&nbsp;&nbsp;密 码:<input type="text" name="mod_pass" id="mod-pass"><br/><br/>
+	<input class="button" type="submit" id="modData" value="修改">
+</form>
+</body>
+</html>

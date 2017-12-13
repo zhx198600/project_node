@@ -1,0 +1,42 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>ajax</title>
+	<script src="http://code.jquery.com/jquery-1.4.1.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		
+	})
+		function loadXMLDoc(){
+			var xmlhttp;
+			if(window.XMLHttpRequest){
+				xmlhttp=new XMLHttpRequest();
+			}
+			else{
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange=function(){
+				if(xmlhttp.readyState==4&&xmlhttp.status==200){
+					$("#myDiv").html(xmlhttp.responseText);
+					//document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+				}
+			}
+			//xmlhttp.open("GET","/res.txt?t=" + Math.random(),true);
+			//xmlhttp.open("GET","/test.asp?fname=Bill&lname=Gates",true);
+			xmlhttp.open("POST","/test.asp",true);
+			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			xmlhttp.send("fname=Bill&lname=Gates");
+		}
+	</script>
+	<style type="text/css" media="screen">
+	    body{
+			font-family: "微软雅黑";
+		}
+	</style>
+</head>
+<body>	
+<div id="myDiv"></div>
+<button type="button" onclick="loadXMLDoc()">改变内容</button>
+</body>
+</html>

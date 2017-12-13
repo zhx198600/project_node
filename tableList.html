@@ -1,0 +1,104 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title></title>
+	<script src="http://code.jquery.com/jquery-1.4.1.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	    var str='';
+		function addList(){
+			$.post("db.json",function(data){
+				//data.user.push({"name":"meimei","password":"888888"});
+				//alert(data.user[3].name);
+				$(data).each(function(){
+	              for(i=0;i<data.user.length;i++){
+					if(data.user[i]==null){
+						data.user.splice(i,1);
+					}
+	              str+='<tr>'+
+	              '<td><input type="checkbox" id=check'+i+' name='+'check'+i+'></td>'+
+	              '<td>'+this.user[i].id+'</td>'+
+	              '<td>'+this.user[i].name+'</td>'+
+	              '<td>'+this.user[i].password+'</td>'+
+	              '</tr>'
+	              }
+	           });
+	           $('#infolist1').append(str); 
+		})         
+			return str;
+		}
+		addList();
+
+		$("#check0").click(function() {
+			alert(2);
+		});
+		$("#delData").click(function(){
+			if(check0=on){
+				alert(000);
+			}
+			//alert(111);
+		});
+
+		$("#modData").click(function(){
+			alert(222);
+		});
+	})
+	//add();
+	</script>
+	<style type="text/css" media="screen">
+	    body{
+			font-family: "微软雅黑";
+		}
+		table{
+			border-collapse: collapse;
+			border-spacing: 0;
+			width:100%;
+			margin-bottom: 10px;
+		}
+		table th{
+			background: #1b68b9;
+			color: #fff;
+		}
+		table th,table td{
+			border:#ccc solid 1px;
+			padding: 0px 10px;
+			height:30px;
+			line-height: 30px;
+		}
+		.button{
+			background:#195aad;
+			padding:0px 10px;
+			height:25px;
+			border:#0e4184 solid 1px;
+			border-radius: 3px;
+			color:#fff;
+			font-family: "微软雅黑";
+			cursor:pointer;
+		}
+		.button:hover{
+			background:#517454;
+			border:#517450 solid 1px;
+
+		}
+	</style>
+</head>
+<body>
+<form>
+	<table name="user-table">
+		<caption>用户数据表</caption>
+		<thead>
+			<tr>
+				<th></th>
+				<th>id</th>
+				<th>用户名</th>
+				<th>密码</th>
+			</tr>
+		</thead>
+		<tbody  id="infolist1">
+		</tbody>
+	</table>
+	<input class="button" type="submit" id="delData" value="删除">
+</form>
+</body>
+</html>

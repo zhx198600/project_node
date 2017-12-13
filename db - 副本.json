@@ -1,0 +1,19 @@
+{
+	"user":[
+	{
+		"id":0,
+		"name":"alina",
+		"password":"123123"
+	},
+	{
+		"id":1,
+		"name":"fatzhao",
+		"password":"123456"
+	},
+	{
+		"id":2,
+		"name":"zhx198600",
+		"password":"zhx4326477"
+	}
+	]
+	}
